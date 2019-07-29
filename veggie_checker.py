@@ -6,10 +6,10 @@ img = Image.open('images/tush.jpg')
 img = np.array(img)
 ir, ir_n_g, ir_n_r = cv.split(img)
 
-bottom = ir_n_r.astype(float)
+bottom = ir_n_r
 bottom[bottom == 0] = 0.01
 
-ndvi = ((ir + ir).astype(float) - ir_n_r)/(bottom)
+ndvi = ((ir + ir) - ir_n_r)/(bottom)
 
 while True:
     cv.imshow('', ndvi)
