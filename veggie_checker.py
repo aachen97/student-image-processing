@@ -4,12 +4,15 @@ from PIL import Image
 
 img = Image.open('images/tush.jpg')
 img = np.array(img)
-ir, ir_n_g, ir_n_r = cv.split(img)
+ir, ir_n_g, ir_n_r = cv.split(img) # splitting into different color channels
+
+# without red filter: b, g, r
+# with red filter: ir, ir + green, ir + red
 
 bottom = ir_n_r
 bottom[bottom == 0] = 0.01
 
-ndvi = ((ir + ir) - ir_n_r)/(bottom)
+ndvi = (ir + ir - ir_n_r)/(bottom)
 
 while True:
     cv.imshow('', ndvi)
